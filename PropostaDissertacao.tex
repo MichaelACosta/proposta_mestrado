@@ -1,0 +1,121 @@
+\documentclass[diss-proposta,nocipinfo]{texufpel}
+
+\usepackage[utf8]{inputenc} % acentuacao
+\usepackage{graphicx} % para inserir figuras
+\usepackage[T1]{fontenc}
+\usepackage{todo}
+\usepackage{xcolor, colortbl, color}
+
+\hypersetup{
+    hidelinks, % Remove coloração e caixas
+    unicode=true,   %Permite acentuação no bookmark
+    linktoc=all %Habilita link no nome e página do sumário
+}
+
+\unidade{Centro de Desenvolvimento Tecnológico}
+\programa{Programa de Pós-Graduação em Computação}
+\curso{Ciência da Computação}
+
+\title{Escalonador de Memórias Transacionais para arquiteturas NUMA}
+
+\author{Costa}{Michael Alexandre}
+\advisor[Prof.~Dr.]{Du Bois}{André Rauber}
+\coadvisor[Prof.~Dr.]{Pilla}{Mauricio Lima}
+
+%Palavras-chave em PT_BR
+\keyword{Escalonador}
+\keyword{Memórias Transacionais}
+\keyword{Arquiteturas NUMA}
+
+%Palavras-chave em EN_US
+\keywordeng{Scheduler}
+\keywordeng{Transactional Memory}
+\keywordeng{NUMA Architecture}
+
+\begin{document}
+
+\maketitle
+\sloppy
+
+%Resumo em Portugues (no maximo 1 pagina)
+\begin{abstract}
+  Apresentar aqui uma breve Introdução ao Problema que está se
+  pretendendo resolver ou abordar. Além disso, nesta seção,
+  apresenta(m)-se o(s) principal(is) objetivo(s) do projeto e,
+  portanto, a(s) principal(is) contribuição(ções).
+\end{abstract}
+
+\chapter{Motivação}
+% (ENTRE 1 e 2 PÁGINAS)
+
+Nesta seção, apresenta-se um breve histórico da área de concentração
+da Dissertação, partindo do tema mais abrangente até chegar
+especificamente no assunto do Projeto. Além disso, apresenta-se a
+justificativa para a realização do trabalho, sua importância acadêmica
+ou para comunidade e grau de inovação. Poderá também apresentar as
+distinções entre o trabalho atual e outros trabalhos já realizados.
+
+\chapter{Objetivos e Resultados}
+% (ENTRE 1 e 3 PÁGINAS)
+
+Nesta seção, apresentam-se o objetivo Geral e os objetivos Específicos
+da dissertação. Os objetivos não devem ser confundidos com as
+atividades. Para a definição das atividades, deve-se partir dos
+objetivos determinados nesta seção. O objetivo Geral do Projeto
+necessariamente deve ser algum resultado prático (implementação) ou
+teórico (modelos formais ou especificações ou validações) produto da
+pesquisa realizada no período do Projeto. Assim como os objetivos
+específicos, que são considerados como sub-produtos do Objetivo
+Geral. Além disso, deve-se apresentar os principais resultados
+esperados do desenvolvimento desta dissertação.
+
+\chapter{Metodologia}
+% (ENTRE 1 e 3 PÁGINAS)
+
+Nesta seção, apresenta-se a metodologia proposta para o
+desenvolvimento da Dissertação. O proponente deve descrever as
+atividades necessárias para a conclusão dos objetivos propostos.
+
+\chapter{Cronograma}
+
+\begin{enumerate}
+  \item Revisar a bibliografia relacionada, revisando os principais escalonadores implementados e suas característica;
+  \item Estudar o código fonte do escalonador base para implementação da heurística Numa-Aware;
+  \item Realizar as primeira modificações na implementação do escalonador base;
+  \item Escrever a fundamentação teórica da dissertação;
+  \item Seminário de andamento;
+  \item Implementação dos testes de validação do escalonador;
+  \item Implementar as modificações no escalonador com validações utilizando o conceito Numa-Aware;
+  \item Realizar e verificar os testes finais para avaliação dos dados coletados;
+  \item Escrever a dissertação final;
+  \item Entrega da dissertação final.
+\end{enumerate}
+
+\input{tabela}
+
+\bibliography{bibliografia}
+\bibliographystyle{abnt}
+
+\chapter{Assinaturas}
+\vspace{2cm}
+
+\begin{center}
+\rule{8cm}{.3mm}
+\medskip
+
+	Michael Alexandre Costa\\
+	Proponente
+
+\end{center}
+
+\vspace{4cm}
+
+\begin{center}
+\rule{8cm}{.3mm}
+\medskip
+
+	André R. Du Bois\\
+	Prof. Orientador
+
+\end{center}
+\end{document}

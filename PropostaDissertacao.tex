@@ -48,12 +48,29 @@
 \chapter{Motivação}
 % (ENTRE 1 e 2 PÁGINAS)
 
-Nesta seção, apresenta-se um breve histórico da área de concentração
-da Dissertação, partindo do tema mais abrangente até chegar
-especificamente no assunto do Projeto. Além disso, apresenta-se a
-justificativa para a realização do trabalho, sua importância acadêmica
-ou para comunidade e grau de inovação. Poderá também apresentar as
-distinções entre o trabalho atual e outros trabalhos já realizados.
+Memórias Transacionais~(MT) são mecanismos de sincronização que realizam execuções atômicas e isoladas de partes compartilhadas do código. Na programação utilizando \emph{Software Transactional Memory}~(STM), o acesso à memória compartilhada é realizado dentro de uma transação executada atomicamente~\cite{teixeira15}. As Memórias transacionais propiciam aos programadores maior facilidade de desenvolver programas paralelos, sem ter de se preocupar com aquisições e liberações de \emph{locks}, assim, evitando problemas como o \emph{deadlock}.
+
+Para garantir a sincronização das transações, STMs utilizam um sistema com detecção de conflitos e gerenciadores de contenção. Estes auxiliam na sincronização e consistência do sistema, ou seja, se duas transações manipulam o mesmo dado, a STM detecta um conflito com base em seu sistema de detecção de conflito que toma decisão de cancelar uma das transações, e reinicia a execução desta de acordo com seu gerenciador de contenção.
+
+Os gerenciadores de contenção garantem a reexecução da transação, mas atuam após a ocorrência de um conflito, assim, não evitando que os conflitos ocorram. Outro fator desfavoral ao sistema atual de gerenciadores de conflitos é que suas regras em geral, não evitam que novos conflitos ocorram em transações já conflitadas.
+
+Buscando reduzir o \emph{overhead} gerado por conflitos, trabalhos recentes de STM utilizam escalonadores com caracteristicas especificas para reduzir o número de conflitos. Trabalhos recentes utilizam heuristicas distintas para auxiliar na tomada de decisão do escalonador, onde, este pode decidir por inciar ou não uma \emph{thread} para evitar que conflitos ocarram.
+
+A utilização de escalonadores de STM permitem maior controle sobre as transações em execução, possibilitando a serialização de parte do código para evitar conflitos, ou até mesmo controlar o fluxo de transações em relação ao número de \emph{cores} de uma máquina. Porem, o escalonador funciona com pasa em dados coletados ou previamente passados para ele, isto ocorre de acordo com a heuristica utilizada junto ao escalonador.
+
+Existem heuristicas de escalonadores distintas, que influenciam diretamente na proposta de escalonamento utilizada. O trabalho~\cite{sanzo17}, apresenta uma categorização de escalonadores, com base em escalonadores existentes na bibliografia, analizando as principais heurísticas utilizadas e suas configurações.
+
+% explicar heuristicas
+
+O escalonador Shrink, apresentado em ~\cite{dragojevic09} e abordado no trabalho de~\cite{sanzo17}, possui heuristica baseada em previsão com base na heuristica baseada em \emph{feedback} do escalonador ATS~\cite{yoo08}. Shrink utiliza de um contador de intencidade IC, no qual com base nas ocorrencias de conflitos toma a decisão de iniciar uma transação ou aguardar outra ser executada...
+
+O escalonador Shrink é desenvolvido junto com a biblioteca de STM \emph{tinySTM}, e assim como demais escalonares vistos na bibliografia são desenhados para utilizar arquiteturas UMA~\emph{(Uniform Memory Acess)}, assim sendo, consideram informações da execução do algoritmo e abstraem as caracteristicas da arquitetura utilizada, assumindo o uso de arquiteturas UMA.
+
+A utilização de arquteturas NUMA~\emph{(Nom-Uniform Memory Acess)}, tem importante contribuição para computação paralela e mostranse promissoras para ampliar a utilização de \emph{cores} por máquina. Isto se da pela sua principal diferença entre as arquiteturas UMA, esta sendo o uso de barramento distintos entre o acesso à memória.
+
+% explicar NUMA
+
+% proposta
 
 \chapter{Objetivos e Resultados}
 % (ENTRE 1 e 3 PÁGINAS)

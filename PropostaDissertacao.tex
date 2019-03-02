@@ -79,16 +79,15 @@ A proposta acima implica na modificação do escalonador para coletar os dados, 
 \chapter{Objetivos e Resultados}
 % (ENTRE 1 e 3 PÁGINAS)
 
-Nesta seção, apresentam-se o objetivo Geral e os objetivos Específicos
-da dissertação. Os objetivos não devem ser confundidos com as
-atividades. Para a definição das atividades, deve-se partir dos
-objetivos determinados nesta seção. O objetivo Geral do Projeto
-necessariamente deve ser algum resultado prático (implementação) ou
-teórico (modelos formais ou especificações ou validações) produto da
-pesquisa realizada no período do Projeto. Assim como os objetivos
-específicos, que são considerados como sub-produtos do Objetivo
-Geral. Além disso, deve-se apresentar os principais resultados
-esperados do desenvolvimento desta dissertação.
+O trabalho proposto tem como objetivo melhorar o desempenho de programas paralelos, que usam STM em arquiteturas NUMA. Para isto será modificado um escalonar STM, onde será inserindo premissas que avaliam as características da arquitetura utilizada em tempo de execução. O escalonador avaliará o custo da latência de acesso à memória, entre outros dados previstos pelo escalonador, com isto tomara decisões sobre as \emph{threads} em execução, podendo serializar as transações ou executar em outros processadores para reduzir o custo de latência.
+
+O escalonador escolhido para desenvolver este trabalho foi o Shrink, visto em \cite{dragojevic09}. Este foi escolhido pela sua simplicidade de implementação e características. Shrink é um escalonador baseado em previsão, ou seja, avalia a intensidade de conflitos de um conjunto de transações, e sobre estes dados toma ou não a decisão de serializar estas transações. O Shrink também tem uma politica de utilizar a coleta de dados apenas para aplicações com alta carga de conflitos, assim evitam \emph{overhead} desnecessário, otimizando seus resultados.
+
+Estas características serão exploradas, assim, serão inseridas novas politicas de escalonamento para avaliar a arquiteturas. Para isto será estudado outros escalonadores da bibliografia, entre eles o ATS~\cite{yoo08} que fornece um algoritmo simples muito utilizado em outros trabalho, e o escalonador CAR-STM~\cite{dolev08} que possui um algoritmo mais complexo e que mostra resultados positivos.
+
+O trabalho também realizara a revisão bibliográfica da área, avaliando a diferença entre os tempos de execução dos escalonadores STM executados em arquiteturas UMA e NUMA. Será realizado testes com o escalonador modificado nas duas arquiteturas previstas, a fim de avaliar o impacto de uma politica de escalonamento com foco nas arquiteturas NUMA.
+
+Os resultados esperados com o trabalho são o melhor desempenho em tempo de execução em arquiteturas NUMA, ao utilizadas com maior eficiência e consciência. Também, manter um baixo \emph{overhead} para o uso de STM, utilizando o escalonador apenas com alta contenção e utilizando as premissas NUMA apenas para estas arquiteturas. E por fim, fornecer a bibliografia um escalonador STM que em tempo de execução avalie e considere as características da arquitetura utilizada para otimizar seu desempenho.
 
 \chapter{Metodologia}
 % (ENTRE 1 e 3 PÁGINAS)

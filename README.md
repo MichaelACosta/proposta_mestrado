@@ -2,7 +2,7 @@
 
 ## Escalonador de Memórias Transacionais para arquitetura NUMA
 
-Michael Alexandre composta
+Michael Alexandre Costa
 
 ### Resumo
 

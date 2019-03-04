@@ -16,7 +16,7 @@
 \programa{Programa de Pós-Graduação em Computação}
 \curso{Ciência da Computação}
 
-\title{Escalonador de Memórias Transacionais para arquiteturas NUMA}
+\title{Escalonador de Memórias Transacionais para arquitetura NUMA}
 
 \author{Costa}{Michael Alexandre}
 \advisor[Prof.~Dr.]{Du Bois}{André Rauber}
@@ -37,7 +37,6 @@
 \maketitle
 \sloppy
 
-%Resumo em Portugues (no maximo 1 pagina)
 \begin{abstract}
 
   Memórias Transacionais (TM) são apresentadas como alternativas à sincronização com \emph{locks} e monitores. Estes utilizam conceitos de transações semelhantes aos existentes em bancos de dados. Estes conceitos permitem ao programador escrever programas paralelos em mais alto nível, reduzindo a complexidade da sincronização.
@@ -57,7 +56,6 @@
 \end{abstract}
 
 \chapter{Motivação}
-% (ENTRE 1 e 2 PÁGINAS)
 
 Memórias Transacionais~(MT) são mecanismos de sincronização que realizam execuções atômicas e isoladas de partes compartilhadas do código. Na programação utilizando \emph{Software Transactional Memory}~(STM), o acesso à memória compartilhada é realizado dentro de uma transação executada atomicamente~\cite{teixeira15}. As Memórias transacionais propiciam aos programadores maior facilidade de desenvolver programas paralelos, sem ter de se preocupar com aquisições e liberações de \emph{locks}, assim, evitando problemas como o \emph{deadlock}.
 
@@ -88,7 +86,6 @@ Foi escolhido o escalonador Shrink por utilizar a biblioteca de STM \emph{TinyST
 A proposta acima implica na modificação do escalonador para coletar os dados, avaliar a arquitetura, avaliar a latência de acesso e tomar a decisão, com base nos demais dados coletados pelo escalonador em serializar as transações, migra-las entre processadores para reduzir o custo de latência ou manter o fluxo de execução. Com isto, será fornecido um escalonar que em tempo de execução terá conhecimento sobre a arquitetura na qual está sendo utilizada.
 
 \chapter{Objetivos e Resultados}
-% (ENTRE 1 e 3 PÁGINAS)
 
 O trabalho proposto tem como objetivo melhorar o desempenho de programas paralelos, que usam STM em arquiteturas NUMA. Para isto será modificado um escalonar STM, onde será inserindo premissas que avaliam as características da arquitetura utilizada em tempo de execução. O escalonador avaliará o custo da latência de acesso à memória, entre outros dados previstos pelo escalonador, com isto tomara decisões sobre as \emph{threads} em execução, podendo serializar as transações ou executar em outros processadores para reduzir o custo de latência.
 
@@ -101,7 +98,6 @@ O trabalho também realizara a revisão bibliográfica da área, avaliando a dif
 Os resultados esperados com o trabalho são o melhor desempenho em tempo de execução em arquiteturas NUMA, ao utilizadas com maior eficiência e consciência. Também, manter um baixo \emph{overhead} para o uso de STM, utilizando o escalonador apenas com alta contenção e utilizando as premissas NUMA apenas para estas arquiteturas. E por fim, fornecer a bibliografia um escalonador STM que em tempo de execução avalie e considere as características da arquitetura utilizada para otimizar seu desempenho.
 
 \chapter{Metodologia}
-% (ENTRE 1 e 3 PÁGINAS)
 
 Para a realização deste trabalho, será realizados os estudos do código fonte do escalonador Shrink, disponivel em \cite{shrink09}. O estudo será focado no entendimento da biblioteca de \emph{TinySTM}, onde está implementado código do escalonador fornecido e suas heuristicas para tomada de decisão. Neste senario de estudos das bibliotecas destina-se tempo para utilizar junto com escalonador o \emph{benchmark STAMP} visto em \cite{STAMP}.
 

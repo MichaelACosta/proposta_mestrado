@@ -1,8 +1,10 @@
 # Proposta de Dissertação UFPel 2019-1
 
+## Escalonador de Memórias Transacionais para arquitetura NUMA
+
 Michael Alexandre composta
 
-## Resumo
+### Resumo
 
 Memórias Transacionais (TM) são apresentadas como alternativas à sincronização com locks e monitores. Estes utilizam conceitos de transações semelhantes aos existentes em bancos de dados. Estes conceitos permitem ao programador escrever programas paralelos em mais alto nível, reduzindo a complexidade da sincronização.
 

@@ -62,7 +62,7 @@ Existem heurísticas de escalonadores distintas, que influenciam diretamente na 
 
 O escalonador Shrink, apresentado em ~\cite{dragojevic09} e abordado no trabalho de~\cite{sanzo17}, possui heurística baseada em previsão. Ou seja, utiliza um conjuntos de dados previstos, dados lidos por um conjunto de transações executadas em um \emph{thread}, para prever que um conflito pode ocorrer. Os conjuntos de dados que indicam a possibilidade de conflito são tem suas transações serializadas pelo escalonador.
 
-O escalonador Shrink é desenvolvido junto com a biblioteca de STM \emph{tinySTM}, e assim como demais escalonares estudados na bibliografia são desenhados para utilizar arquiteturas UMA~\emph{(Uniform Memory Access)}, assim sendo, consideram as informações da execução do algoritmo e abstraem as características da arquitetura utilizada, assumindo o uso de arquiteturas UMA.
+O escalonador Shrink é desenvolvido junto com a biblioteca de STM \emph{tinySTM}~\cite{TINY}, e assim como demais escalonares estudados na bibliografia são desenhados para utilizar arquiteturas UMA~\emph{(Uniform Memory Access)}, assim sendo, consideram as informações da execução do algoritmo e abstraem as características da arquitetura utilizada, assumindo o uso de arquiteturas UMA.
 
 A utilização de arquiteturas NUMA~\emph{(Non Uniform Memory Access)} trazem a vantagem de agregar maior paralelismo ao adicionar mais processadores sem aumentar o gargalo de acesso ao barramento. Sua arquitetura é feita para que os processadores não utilizem o mesmo barramento de acesso à memória como é feito em arquiteturas UMA.
 
@@ -92,9 +92,24 @@ Os resultados esperados com o trabalho são o melhor desempenho em tempo de exec
 \chapter{Metodologia}
 % (ENTRE 1 e 3 PÁGINAS)
 
-Nesta seção, apresenta-se a metodologia proposta para o
-desenvolvimento da Dissertação. O proponente deve descrever as
-atividades necessárias para a conclusão dos objetivos propostos.
+Para a realização deste trabalho, será realizados os estudos do código fonte do escalonador Shrink, disponivel em \cite{shrink09}. O estudo será focado no entendimento da biblioteca de \emph{TinySTM}, onde está implementado código do escalonador fornecido e suas heuristicas para tomada de decisão. Neste senario de estudos das bibliotecas destina-se tempo para utilizar junto com escalonador o \emph{benchmark STAMP} visto em \cite{STAMP}.
+
+A modificação do escalonador Shrink, que permitirá avaliar a arquitetura utilizada, será a contribuição principal deste trabalho. Esta terá como base demais escalonadores estudados na bibliografia, porem seu foco está em considerar características NUMA como heurística de escalonamento.
+
+O custo de latência é a principal característica NUMA a ser avaliada pelo escalonador. Onde de forma simples o escalonador busca reduzir a latência migrando as transações conflitantes com maiores custos de acesso à memória e serializando os demais. Para evitar \emph{overhead} de execução, será considerado para habilitar o escalonador, o nível de contenção do sistema e a arquitetura na qual está sendo executada, assim, caso a aplicação rode em arquitetura UMA, não será avaliada as latências.
+
+Após a realização das modificações serão realizados testes utilizando as duas arquiteturas, estes testes tem a finalidade de avaliar estatisticamente o desempenho fornecido pelo escalonador modificado tanto na arquitetura UMA como NUMA. Também será realizado testes nas duas arquiteturas com escalonador Shrink sem modificação, este tem como objetivo comparar estatisticamente o desempenho entre o Shrink e sua modificação fornecida neste trabalho.
+
+Para demais comparações e avaliações estatísticas, pretende-se executar testes como outros escalonadores disponíveis na bibliografia e a biblioteca de STM \emph{tinySTM} sem o uso de escalonadores. Assim, permitindo examinar a influencia de escalonadores de STM em arquiteturas NUMA.
+
+O escalonador Shrink possui duas premissas importantes de escalonamento. A primeira é utilizar o escalonador apenas para ambientes de alta contenção, assim, o escalonador só é utilizado quando um determinado limiar é ultrapassado por um contador de conflitos. Isto mantem um baixo custo de execução em ambientes com baixa contenção. O segundo é serializar todo conjunto de transação com alta possibilidade de conflito. Isto ocorre com a verificação do número de conflitos de um conjunto de transações.
+
+Estas característica são importantes para reduzir o tempo de execução. Neste trabalho pretende-se estender estas características e inserir a migração de transações para transações com latência de acessa alto. Um dos desafios deste trabalho será manter o desempenho em ambientes de baixa contenção, e manter o escalonador original em arquiteturas UMA. Para arquiteturas NUMA, o desafio torna-se prover a migração das transações. Este ultimo tem o objetivo de fornecer o menor \emph{overhead} possível ao sistema.
+
+Para os testes realizados nas duas arquiteturas será utilizado junto a biblioteca de STM \emph{TinySTM} e escalonadores o conjunto \emph{benchmark STAMP}. Este fornece uma gama distinta de \emph{benchmarks}, onde podemos testar ambientes de alta e baixa contenção. Sendo o \emph{STAMP} um dos conjuntos de \emph{benchmarks} mais utilizados na bibliografia.
+
+Este trabalho contribui para área com um escalonador de STM que avalia as características NUMA. Com isto espera-se obter melhor desempenho no tempo de execução de aplicações STM, reduzindo número de conflitos e otimizando as vantagens oferecidas por arquiteturas com alto paralelismo.
+
 
 \chapter{Cronograma}
 

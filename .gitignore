@@ -12,7 +12,6 @@
 *.cb
 *.cb2
 *.out
-*.pdf
 
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
